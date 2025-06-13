@@ -6,17 +6,15 @@ Projeto Spring Boot para cadastro, consulta e verificação de veículos, integr
 
 - **Cadastro de Veículo:**  
   Permite cadastrar um novo veículo informando a placa. Os demais dados (marca, modelo, chassi, licenciamento) são buscados automaticamente em uma API externa.
-
 - **Consulta de Veículo por ID:**  
   Permite buscar um veículo cadastrado pelo seu ID.
-
 - **Listagem de Veículos:**  
   Retorna todos os veículos cadastrados no sistema.
-
 - **Remoção de Veículo:**  
   Permite remover um veículo cadastrado pelo seu ID.
 
 ## Estrutura do Projeto
+
 - **controllers/**: Endpoints REST.
 - **services/**: Regras de negócio.
 - **client/**: Integração com API externa.
@@ -44,20 +42,103 @@ Ao cadastrar um veículo, o sistema consulta uma API externa (Mockaroo) para pre
 3. Execute o projeto com `mvn spring-boot:run`.
 4. Acesse os endpoints via Postman, Insomnia ou outra ferramenta REST.
 
-## Exemplos de Endpoints
-
-- `POST /veiculos`  
-  Cadastra um novo veículo.
-
-- `GET /veiculos/{id}`  
-  Busca veículo por ID.
-
-- `GET /veiculos`  
-  Lista todos os veículos.
-
-- `DELETE /veiculos/{id}`  
-  Remove veículo por ID.
+## Exemplos de Uso dos Endpoints
 
 ---
 
-Projeto desenvolvido para fins de estudo e demonstração de boas práticas com Spring Boot.
+### 1. Cadastrar Veículo
+
+**POST /veiculos**
+
+#### Request
+```
+POST /veiculos
+Response (201 Created)
+```
+
+```json
+{
+  "placa": "ABC1234",
+  "proprietario": "Maria Silva",
+  "cpf": "123.456.789-00"
+}
+```
+```json
+{
+  "id": 1,
+  "placa": "ABC1234",
+  "chassi": "WBAPT73598C125222",
+  "proprietario": "Maria Silva",
+  "marca": "Dodge",
+  "modelo": "Omni",
+  "cpf": "123.456.789-00",
+  "licenciado": true
+}
+```
+
+### 2. Buscar Veículo por ID
+**GET /veiculos/{id}**
+#### Request:
+
+```
+GET /veiculos/1
+Response (200 OK)
+```
+
+```json
+{
+  "id": 1,
+  "placa": "ABC1234",
+  "chassi": "WBAPT73598C125222",
+  "proprietario": "Maria Silva",
+  "marca": "Dodge",
+  "modelo": "Omni",
+  "cpf": "123.456.789-00",
+  "licenciado": true
+}
+
+```
+### 3. Listar Todos os Veículos
+**GET /veiculos**
+#### Request:
+
+```
+GET /veiculos
+Response (200 OK)
+```
+
+```json
+[
+  {
+    "id": 1,
+    "placa": "ABC1234",
+    "chassi": "WBAPT73598C125222",
+    "proprietario": "Maria Silva",
+    "marca": "Dodge",
+    "modelo": "Omni",
+    "cpf": "123.456.789-00",
+    "licenciado": true
+  },
+  {
+    "id": 2,
+    "placa": "XYZ9876",
+    "chassi": "JH4KA3260KC123456",
+    "proprietario": "João Souza",
+    "marca": "Fiat",
+    "modelo": "Uno",
+    "cpf": "987.654.321-00",
+    "licenciado": false
+  }
+]
+```
+### 4. Remover Veículo por ID
+**DELETE /veiculos/{id}**
+#### Request:
+```
+DELETE /veiculos/1
+Response (204 No Content)
+```
+```
+(no body)
+```
+
