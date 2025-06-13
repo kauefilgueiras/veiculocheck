@@ -63,6 +63,8 @@ Response (201 Created)
   "cpf": "123.456.789-00"
 }
 ```
+#### Response
+
 ```json
 {
   "id": 1,
