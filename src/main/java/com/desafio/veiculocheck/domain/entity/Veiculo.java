@@ -9,7 +9,7 @@ import lombok.*;
 @Table(name = "veiculos")
 public class Veiculo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "placa", unique = true, nullable = false)

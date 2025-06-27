@@ -1,0 +1,10 @@
+CREATE TABLE veiculos (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    placa VARCHAR(255) NOT NULL UNIQUE,
+    chassi VARCHAR(255) NOT NULL UNIQUE,
+    proprietario VARCHAR(255) NOT NULL,
+    marca VARCHAR(255) NOT NULL,
+    modelo VARCHAR(255) NOT NULL,
+    cpf VARCHAR(255) NOT NULL,
+    licenciado BOOLEAN NOT NULL
+);
